@@ -1,3 +1,14 @@
+firebase.auth().onAuthStateChanged((user) => {
+  if (!user) {
+    firebase.auth().signInAnonymously()
+      .then(() => {
+        console.log("User signed in anonymously");
+      })
+      .catch((error) => {
+        console.error("Error signing in:", error);
+      });
+  }
+});
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
