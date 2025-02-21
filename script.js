@@ -1,3 +1,18 @@
+document.getElementById("send").addEventListener("click", function () {
+  var message = document.getElementById("message").value;
+  if (message.trim() !== "") {
+    firebase.database().ref("messages").push().set({
+      "message": message
+    }).then(() => {
+      console.log("Message sent successfully!");
+    }).catch((error) => {
+      console.error("Error sending message: ", error);
+    });
+    document.getElementById("message").value = ""; // Clear input field
+  } else {
+    console.log("Empty message not sent.");
+  }
+});
 firebase.auth().onAuthStateChanged((user) => {
   if (!user) {
     firebase.auth().signInAnonymously()
@@ -23,18 +38,6 @@ const firebaseConfig = {
   storageBucket: "chatapp-12923.firebasestorage.app",
   messagingSenderId: "898100836324",
   appId: "1:898100836324:web:0134c45a682ccc3307f9f1"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
- (Yaha timro Firebase config rakhnu)
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
 };
 
 // Firebase Initialize
